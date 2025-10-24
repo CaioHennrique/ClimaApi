@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { TiWeatherPartlySunny } from "react-icons/ti";
+import { FaSearch } from "react-icons/fa";
+import { MdPlace } from "react-icons/md";
+
 import { FaTemperatureHigh } from "react-icons/fa";
 import { FaTemperatureLow } from "react-icons/fa";
 import { IoIosWater } from "react-icons/io";
@@ -10,9 +12,9 @@ const Container = styled.div`
 
 background: linear-gradient(
   135deg,
-  rgba(255, 223, 86, 0.4),   /* amarelo claro (sol) */
-  rgba(255, 183, 76, 0.84),   /* laranja suave */
-  rgba(23, 57, 207, 0.7)   /* azul céu no fundo */
+  rgba(255, 223, 86, 0.4),   
+  rgba(255, 183, 76, 0.84),   
+  rgba(23, 57, 207, 0.7)  
 );
 backdrop-filter: blur(12px);
 padding: 1.5rem ;
@@ -62,11 +64,11 @@ h2{
 
 `
 
-const Input = styled.input`
+const ContainerInput = styled.div`
 
-font-size: .8rem;
-padding: .5rem 0;
-width: 100%;
+display: flex;
+align-items: center;
+position: relative;
 background: rgba(116, 105, 105, 0.29);
 border: 2px solid rgba(85, 76, 76, 0.06); 
 border-radius: 10px;                
@@ -74,13 +76,41 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.24);
 backdrop-filter: blur(10px); 
 margin-bottom: 1rem;
 
+
 `
 
+const Input = styled.input`
 
+background-color: transparent;
+z-index: 1;
+padding:.5rem ;
+padding-right: 0;
+font-size: 1rem;
+margin: 0 1.8rem ;
+width: 80%;
 
+`
 
+const IconSearch = styled(FaSearch)`
 
+position: absolute;
+content: "";
+width: fit-content;
+font-size: 1.2rem;
+right: 0;
+cursor: pointer;
+padding: .5rem 1rem;
+`
 
+const IconPlace = styled(MdPlace)`
+
+position: absolute;
+content: "";
+width: fit-content;
+font-size: 1.5rem;
+left: 1%;
+
+`
 
 
 const Tempo = styled.div`
@@ -204,4 +234,5 @@ font-size: 1.2rem;
 
 `
 export { Container, ContainerWeather, Tempo,Grau, Input, 
-Informacao, Marcacao, IconTempAlta, IconTempBaixa, IconAgua, IconVento, GrauInfo, Previsao}
+Informacao, Marcacao, IconTempAlta, IconTempBaixa, IconAgua,
+ IconVento, GrauInfo, Previsao, IconSearch, IconPlace, ContainerInput}

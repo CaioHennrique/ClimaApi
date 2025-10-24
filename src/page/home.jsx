@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
     Container, ContainerWeather, Tempo, Grau, Input,
     Informacao, Marcacao, IconTempAlta, IconTempBaixa, IconAgua,
-    IconVento, GrauInfo, Previsao
+    IconVento, GrauInfo, Previsao, IconSearch, IconPlace, ContainerInput
 } from "./style"
 import { Clima } from "../services/getData"
 
@@ -11,20 +11,29 @@ import { Clima } from "../services/getData"
 
 
 function Home() {
-    const [clima, setClima] = useState();
+    const [clima, setClima] = useState(null);
+    const [cidade, setCidade] = useState("");
 
+    const inputRef = useRef(null);
+
+
+
+    const fetchDados = async () => {
+        if (!cidade) return
+        const climaAtual = await Clima(cidade);
+
+        setClima(climaAtual)
+        console.log(climaAtual)
+
+        setCidade("");
+        inputRef.current.focus();
+    }
 
     useEffect(() => {
 
-        const fetchDados = async () => {
 
-            const climaAtual = await Clima();
 
-            setClima(climaAtual)
-            console.log(climaAtual)
-        }
 
-        fetchDados()
     }, [])
 
 
@@ -34,10 +43,18 @@ function Home() {
 
             <h1>WEATHER</h1>
 
+            <ContainerInput>
+                <IconSearch onClick={fetchDados} />
+                <Input onChange={(e) => setCidade(e.target.value)} ref={inputRef}  placeholder="Digite uma cidade..."
+                value={cidade} />
+                <IconPlace />
+            </ContainerInput>
+
             <ContainerWeather>
                 {clima && (
                     <>
-                        <Input />
+
+
 
                         <h2>{clima.location.name}, {clima.location.country} </h2>
 
@@ -45,7 +62,7 @@ function Home() {
                             <img src={clima.current.condition.icon} alt="sol" />
                             <div>
                                 <Grau>{clima.current.temp_c} <sup>°C</sup></Grau>
-                                <Previsao>nublado</Previsao>
+                                <Previsao>{clima.current.condition.text}</Previsao>
                             </div>
                         </Tempo>
 
@@ -84,7 +101,7 @@ function Home() {
                         </Informacao>
 
                     </>
-                )};
+                )}
             </ContainerWeather>
         </Container>
     )

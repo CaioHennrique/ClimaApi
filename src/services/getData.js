@@ -1,17 +1,20 @@
 import api from "./api";
 
-async function testeClima() {
+async function Clima() {
 
-    const clima = await api.get("/current.json", {
+    const clima = await api.get("/forecast.json", {
         params:{
         key:"8bb90a449309494eb5f220949252310",
         q: "São Paulo", 
-        lang: "pt"
+        lang: "pt",
+        day:1
     }})
 
-    console.log(clima.data)
     return clima.data
+
     
 }
 
-export { testeClima}
+
+
+export {Clima}

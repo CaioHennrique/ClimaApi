@@ -131,18 +131,6 @@ font-size: 1.5rem;
 
 `
 
-const IconTempo = styled(TiWeatherPartlySunny)`
-font-size:6rem;
-color: yellow;
-
- @media screen  and (min-width:600px){
-
-    font-size: 8rem;
-
- };
-
-`
-
 const Informacao = styled.div`
  display: grid;
  grid-template-columns: repeat(1, 1fr);
@@ -215,5 +203,5 @@ font-weight: bold;
 font-size: 1.2rem;
 
 `
-export { Container, ContainerWeather, Tempo,Grau, IconTempo, Input, 
+export { Container, ContainerWeather, Tempo,Grau, Input, 
 Informacao, Marcacao, IconTempAlta, IconTempBaixa, IconAgua, IconVento, GrauInfo, Previsao}

@@ -4,10 +4,7 @@ import {
     Informacao, Marcacao, IconTempAlta, IconTempBaixa, IconAgua,
     IconVento, GrauInfo, Previsao, IconSearch, IconPlace, ContainerInput
 } from "./style"
-import { Clima } from "../services/getData"
-
-
-
+import Clima from "../services/getData"
 
 
 function Home() {
@@ -16,11 +13,9 @@ function Home() {
 
     const inputRef = useRef(null);
 
-
-
-    const fetchDados = async () => {
-        if (!cidade) return
-        const climaAtual = await Clima(cidade);
+    const fetchDados = async (cidadeAtual = cidade) => {
+        if (!cidadeAtual) return
+        const climaAtual = await Clima(cidadeAtual);
 
         setClima(climaAtual)
         console.log(climaAtual)
@@ -31,8 +26,7 @@ function Home() {
 
     useEffect(() => {
 
-
-
+        fetchDados("sao paulo")
 
     }, [])
 
@@ -44,9 +38,9 @@ function Home() {
             <h1>WEATHER</h1>
 
             <ContainerInput>
-                <IconSearch onClick={fetchDados} />
-                <Input onChange={(e) => setCidade(e.target.value)} ref={inputRef}  placeholder="Digite uma cidade..."
-                value={cidade} />
+                <IconSearch onClick={() => fetchDados(cidade)} />
+                <Input onChange={(e) => setCidade(e.target.value)} ref={inputRef} placeholder="Digite uma cidade..."
+                    value={cidade} />
                 <IconPlace />
             </ContainerInput>
 

@@ -7,14 +7,11 @@ async function Clima(cidade) {
         key:"8bb90a449309494eb5f220949252310",
         q: cidade, 
         lang: "pt",
-        day:1
+        days:1
     }})
 
     return clima.data
 
-    
 }
 
-
-
-export {Clima}
+export default Clima  

@@ -10,22 +10,15 @@ import { FaWind } from "react-icons/fa6";
 
 const Container = styled.div`
 
-background: linear-gradient(
-  135deg,
-  rgba(255, 223, 86, 0.4),   
-  rgba(255, 183, 76, 0.84),   
-  rgba(23, 57, 207, 0.7)  
-);
-backdrop-filter: blur(12px);
 padding: 1.5rem ;
 width: 80%;
 margin: 0 auto;
 border-radius: 10px;
 max-width: 550px;
 
-    h1{
-        text-align: center;
-    }
+h1{
+   text-align: center;
+}
 
      @media screen  and (min-width:600px){
 
@@ -117,6 +110,7 @@ const Tempo = styled.div`
 
 display: flex;
 align-items: center;
+gap: 5%;
 margin:.5rem 0;
 
 height: 100px;
@@ -126,6 +120,19 @@ backdrop-filter: blur(10px);
 border: 2px solid rgba(85, 76, 76, 0.06); 
 border-radius: 16px;                 
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.16);
+
+
+
+img{
+   
+
+    @media screen  and (min-width:600px){
+
+      height: 220px;
+      width: 220px;
+
+    }
+}
 
  @media screen  and (min-width:500px){
 

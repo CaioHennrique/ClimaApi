@@ -17,7 +17,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000000b9;
+    background-color: #181818f3;
 }
 `
 

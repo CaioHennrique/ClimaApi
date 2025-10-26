@@ -10,6 +10,7 @@ import Clima from "../services/getData"
 function Home() {
     const [clima, setClima] = useState(null);
     const [cidade, setCidade] = useState("");
+     const [background, setBackground] = useState("")
 
     const inputRef = useRef(null);
 
@@ -25,6 +26,33 @@ function Home() {
     }
 
     useEffect(() => {
+    if (!clima) return;
+
+    const condicao = clima.current.condition.text.toLowerCase();
+
+    if (condicao.includes("parcial") || condicao.includes("limpo")) {
+      setBackground("linear-gradient(to bottom, #47b3bb, #2d71cf)");
+    } else if (condicao.includes("nublado") || condicao.includes("nuvem")) {
+      setBackground("linear-gradient(to bottom, #D7D2CC, #304352)");
+    } else if (condicao.includes("chuva")) {
+      setBackground("linear-gradient(to bottom, #4B79A1, #283E51)");
+    } else if (condicao.includes("tempestade") || condicao.includes("trovão")) {
+      setBackground("linear-gradient(to bottom, #232526, #414345)");
+    } else if (condicao.includes("neblina") || condicao.includes("névoa")  || condicao.includes("nevoeiro") || condicao.includes("neve")) {
+      setBackground("linear-gradient(to bottom, #BBD2C5, #536976)");
+    } else if (condicao.includes("calor") || condicao.includes("sol")) {
+      setBackground("linear-gradient(to bottom, #F2994A, #F2C94C)");
+    } else if (condicao.includes("vento")) {
+      setBackground("linear-gradient(to bottom, #757F9A, #D7DDE8)");
+    } else if (condicao.includes("pôr") || condicao.includes("amanhecer")) {
+      setBackground("linear-gradient(to bottom, #FF9966, #FF5E62)");
+    } else {
+      // padrão (ensolarado)
+      setBackground("linear-gradient(to bottom, #56CCF2, #2F80ED)");
+    }
+  }, [clima]);
+
+    useEffect(() => {
 
         fetchDados("sao paulo")
 
@@ -33,7 +61,7 @@ function Home() {
 
     return (
 
-        <Container>
+        <Container style={{ background }}>
 
             <h1>WEATHER</h1>
 
